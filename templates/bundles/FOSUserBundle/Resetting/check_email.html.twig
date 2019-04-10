@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1 class="mt-4 mb-3">Récupération de mot de passe</h1>
+
+    <p>
+        Un e-mail a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser votre mot de
+        passe.<br/>
+        Remarque : Vous ne pouvez demander un nouveau mot de passe que toutes les {{ tokenLifetime }} heures.<br/>
+        <br/>
+        Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
+    </p>
+{% endblock %}

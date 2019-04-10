@@ -1,12 +1,75 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>GoT - Pronostiques</title>
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('index') }}">GoT</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_security_login') }}">Se connecter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_registration_register') }}">S'enregistrer </a>
+                    </li>
+                {% endif %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_security_logout') }}">Se déconnecter</a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('easyadmin') }}">Administration</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% block content_header %}
+{% endblock %}
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- Footer -->
+<footer class="py-5 bg-dark mt-5">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Vigicorp 2019</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+</body>
+
 </html>
