@@ -8,6 +8,9 @@
 // any CSS you require will output into a single css file (app.css in this case)
 require('bootstrap');
 require('../scss/main.scss');
+require('../imgs/emilia_clarke_in_game_of_thrones_final_season_8_2019.jpg')
+require('../imgs/jon_snow_in_game_of_thrones_final_season_8_2019.jpg')
+require('../imgs/sansa_stark_in_game_of_thrones_final_season_8_2019.jpg')
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');
