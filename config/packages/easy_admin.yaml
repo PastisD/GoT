@@ -1,0 +1,19 @@
+easy_admin:
+    design:
+        form_theme:
+            - '@EasyAdmin/form/bootstrap_4.html.twig'
+            - '@VichUploader/Form/fields.html.twig'
+    entities:
+        # List the entity class name you want to manage
+        Character:
+            class: App\Entity\Character
+            list:
+                fields:
+                    - { property: 'image', template: 'vich_uploader_image.html.twig' }
+                    - { property: 'name' }
+            form:
+                fields:
+                    - { property: 'imageFile', type: 'vich_image' }
+                    - { property: 'name' }
+        User:
+            class: App\Entity\User

@@ -1,0 +1,9 @@
+parameters:
+    app.path.character_images: /uploads/images/character
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        character_images:
+            uri_prefix:         '%app.path.character_images%'
+            upload_destination: '%kernel.root_dir%/../public%app.path.character_images%'
