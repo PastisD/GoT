@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1 class="mt-4 mb-3">Création de compte</h1>
+
+    <p>Félicitations {{ user.username }}, votre compte est maintenant activé.</p>
+    {% if targetUrl %}
+    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    {% endif %}
+{% endblock %}
