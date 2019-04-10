@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1 class="mt-4 mb-3">Création de compte</h1>
+
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" value="S'enregistrer" class="btn btn-primary"/>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
