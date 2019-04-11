@@ -18,6 +18,7 @@
 ###< symfony/web-server-bundle ###
 
 .idea
+public/uploads
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/

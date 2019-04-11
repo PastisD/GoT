@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -42,6 +44,16 @@ class Character
      * @var \DateTime
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="charac", orphanRemoval=true)
+     */
+    private $userCharacters;
+
+    public function __construct()
+    {
+        $this->userCharacters = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,5 +98,36 @@ class Character
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * @return Collection|UserCharacter[]
+     */
+    public function getUserCharacters(): Collection
+    {
+        return $this->userCharacters;
+    }
+
+    public function addUserCharacter(UserCharacter $userCharacter): self
+    {
+        if (!$this->userCharacters->contains($userCharacter)) {
+            $this->userCharacters[] = $userCharacter;
+            $userCharacter->setCharac($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserCharacter(UserCharacter $userCharacter): self
+    {
+        if ($this->userCharacters->contains($userCharacter)) {
+            $this->userCharacters->removeElement($userCharacter);
+            // set the owning side to null (unless already changed)
+            if ($userCharacter->getCharac() === $this) {
+                $userCharacter->setCharac(null);
+            }
+        }
+
+        return $this;
     }
 }
