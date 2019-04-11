@@ -18,13 +18,13 @@ class UserCharacter
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="userCharacters")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Character", inversedBy="userCharacters")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $charac;
 

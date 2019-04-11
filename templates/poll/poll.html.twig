@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block content_header %}
+    <header>
+    </header>
+{% endblock %}
+
+{% block content %}
+    <!-- Page Content -->
+    <div class="container">
+
+        <h1 class="my-4">Faites vos jeux</h1>
+
+        {{ form_start(form) }}
+        <div class="row">
+
+            {% for userChar in form.children.userCharacters %}
+                {% dump(userChar.vars.value.charac) %}
+                <div class="col-6 col-lg-3 col-sm-4 portfolio-item">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="{{ vich_uploader_asset(userChar.vars.value.charac, 'imageFile') }}" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                {{ userChar.vars.value.charac.name }}
+                            </h4>
+
+                            {{ form_widget(userChar) }}
+                        </div>
+                    </div>
+                </div>
+                {% dump(userChar) %}
+            {% endfor %}
+        </div>
+
+        {{ form_row(form.submit) }}
+        {{ form_end(form) }}
+
+    </div>
+    <!-- /.container -->
+{% endblock %}

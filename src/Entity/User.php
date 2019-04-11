@@ -21,7 +21,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="user", cascade={"persist","remove"}, orphanRemoval=true)
      */
     private $userCharacters;
 
