@@ -35,7 +35,7 @@
         "symfony/web-link": "4.2.*",
         "symfony/webpack-encore-bundle": "^1.5",
         "symfony/yaml": "4.2.*",
-        "vich/uploader-bundle": "^1.9"
+        "vich/uploader-bundle": "^1.8"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
@@ -48,7 +48,10 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "7.1.27"
+        }
     },
     "autoload": {
         "psr-4": {
