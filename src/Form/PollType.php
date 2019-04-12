@@ -50,6 +50,9 @@ class PollType extends AbstractType
             ->add('bronnCastle', null, [
                 'label' => 'Bronn aura son château'
             ])
+            ->add('aryaKillAll', null, [
+                'label' => 'Arya arrive à tuer toute sa liste'
+            ])
             ->add('wallRebuilt', null, [
                 'label' => 'Le Mur sera reconstruit'
             ])

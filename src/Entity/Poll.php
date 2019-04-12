@@ -54,6 +54,11 @@ class Poll
      */
     private $whiteWalkerWin = false;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $aryaKillAll;
+
     public function __construct()
     {
         $this->pollCharacters = new ArrayCollection();
@@ -169,6 +174,18 @@ class Poll
     public function setWhiteWalkerWin(bool $whiteWalkerWin): self
     {
         $this->whiteWalkerWin = $whiteWalkerWin;
+
+        return $this;
+    }
+
+    public function getAryaKillAll(): ?bool
+    {
+        return $this->aryaKillAll;
+    }
+
+    public function setAryaKillAll(bool $aryaKillAll): self
+    {
+        $this->aryaKillAll = $aryaKillAll;
 
         return $this;
     }
