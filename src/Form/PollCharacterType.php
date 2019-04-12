@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\UserCharacter;
+use App\Entity\PollCharacter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserCharacterType extends AbstractType
+class PollCharacterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -18,16 +18,13 @@ class UserCharacterType extends AbstractType
             ->add('whiteWalker', null, [
                 'label' => 'Marcheur blanc'
             ])
-            ->add('throne', null, [
-                'label' => 'Accède au Trône de fer'
-            ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => UserCharacter::class,
+            'data_class' => PollCharacter::class,
         ]);
     }
 }

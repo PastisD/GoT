@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\UserCharacter;
+use App\Entity\PollCharacter;
 use App\Form\PollType;
 use App\Repository\CharacterRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,26 +20,28 @@ class PollController extends AbstractController
      */
     public function poll(Request $request, CharacterRepository $characterRepository)
     {
+        /** @var User $user */
         $user = $this->getUser();
-        $userCharacters = $user->getUserCharacters();
+        $poll = $user->getPoll();
+        $pollCharacters = $poll->getPollCharacters();
 
         /** @var \App\Entity\Character[] $characters */
         $characters = $characterRepository->findAll();
         foreach ($characters as $character) {
             $alreadyFound = false;
-            foreach ($userCharacters as $userCharacter) {
-                if ($character->getId() === $userCharacter->getCharac()->getId()) {
+            foreach ($pollCharacters as $pollCharacter) {
+                if ($character->getId() === $pollCharacter->getCharac()->getId()) {
                     $alreadyFound = true;
                 }
             }
             if(!$alreadyFound) {
-                $userCharacter = new UserCharacter();
-                $userCharacter->setCharac($character);
-                $userCharacter->setUser($user);
-                $user->addUserCharacter($userCharacter);
+                $pollCharacter = new PollCharacter();
+                $pollCharacter->setCharac($character);
+                $pollCharacter->setPoll($poll);
+                $poll->addPollCharacter($pollCharacter);
             }
         }
-        $pollForm = $this->createForm(PollType::class, $user);
+        $pollForm = $this->createForm(PollType::class, $poll);
 
         $pollForm->handleRequest($request);
 

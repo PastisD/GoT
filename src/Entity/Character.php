@@ -46,13 +46,19 @@ class Character
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="charac", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="PollCharacter", mappedBy="charac", orphanRemoval=true)
      */
-    private $userCharacters;
+    private $pollCharacters;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Poll", mappedBy="throne")
+     */
+    private $polls;
 
     public function __construct()
     {
-        $this->userCharacters = new ArrayCollection();
+        $this->pollCharacters = new ArrayCollection();
+        $this->polls = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,30 +107,61 @@ class Character
     }
 
     /**
-     * @return Collection|UserCharacter[]
+     * @return Collection|PollCharacter[]
      */
-    public function getUserCharacters(): Collection
+    public function getPollCharacters(): Collection
     {
-        return $this->userCharacters;
+        return $this->pollCharacters;
     }
 
-    public function addUserCharacter(UserCharacter $userCharacter): self
+    public function addPollCharacter(PollCharacter $pollCharacter): self
     {
-        if (!$this->userCharacters->contains($userCharacter)) {
-            $this->userCharacters[] = $userCharacter;
-            $userCharacter->setCharac($this);
+        if (!$this->pollCharacters->contains($pollCharacter)) {
+            $this->pollCharacters[] = $pollCharacter;
+            $pollCharacter->setCharac($this);
         }
 
         return $this;
     }
 
-    public function removeUserCharacter(UserCharacter $userCharacter): self
+    public function removePollCharacter(PollCharacter $pollCharacter): self
     {
-        if ($this->userCharacters->contains($userCharacter)) {
-            $this->userCharacters->removeElement($userCharacter);
+        if ($this->pollCharacters->contains($pollCharacter)) {
+            $this->pollCharacters->removeElement($pollCharacter);
             // set the owning side to null (unless already changed)
-            if ($userCharacter->getCharac() === $this) {
-                $userCharacter->setCharac(null);
+            if ($pollCharacter->getCharac() === $this) {
+                $pollCharacter->setCharac(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Poll[]
+     */
+    public function getPolls(): Collection
+    {
+        return $this->polls;
+    }
+
+    public function addPoll(Poll $poll): self
+    {
+        if (!$this->polls->contains($poll)) {
+            $this->polls[] = $poll;
+            $poll->setThrone($this);
+        }
+
+        return $this;
+    }
+
+    public function removePoll(Poll $poll): self
+    {
+        if ($this->polls->contains($poll)) {
+            $this->polls->removeElement($poll);
+            // set the owning side to null (unless already changed)
+            if ($poll->getThrone() === $this) {
+                $poll->setThrone(null);
             }
         }
 

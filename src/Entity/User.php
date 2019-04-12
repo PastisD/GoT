@@ -21,13 +21,6 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var ArrayCollection|UserCharacter[]
-     *
-     * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="user", cascade={"persist","remove"}, orphanRemoval=true)
-     */
-    private $userCharacters;
-
-    /**
      * @var string
      *
      * @ORM\Column(type="string", length=255)
@@ -46,42 +39,15 @@ class User extends BaseUser
      */
     private $photo;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Poll", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $poll;
+
     public function __construct()
     {
         parent::__construct();
-        $this->userCharacters = new ArrayCollection();
         // your own logic
-    }
-
-    /**
-     * @return ArrayCollection|UserCharacter[]
-     */
-    public function getUserCharacters(): Collection
-    {
-        return $this->userCharacters;
-    }
-
-    public function addUserCharacter(UserCharacter $userCharacter): self
-    {
-        if (!$this->userCharacters->contains($userCharacter)) {
-            $this->userCharacters[] = $userCharacter;
-            $userCharacter->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserCharacter(UserCharacter $userCharacter): self
-    {
-        if ($this->userCharacters->contains($userCharacter)) {
-            $this->userCharacters->removeElement($userCharacter);
-            // set the owning side to null (unless already changed)
-            if ($userCharacter->getUser() === $this) {
-                $userCharacter->setUser(null);
-            }
-        }
-
-        return $this;
     }
 
     /**
@@ -137,6 +103,26 @@ class User extends BaseUser
     public function setPhoto($photo)
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getPoll(): Poll
+    {
+        if(!$this->poll) {
+            $this->setPoll(new Poll);
+        }
+        return $this->poll;
+    }
+
+    public function setPoll(Poll $poll): self
+    {
+        $this->poll = $poll;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $poll->getUser()) {
+            $poll->setUser($this);
+        }
 
         return $this;
     }

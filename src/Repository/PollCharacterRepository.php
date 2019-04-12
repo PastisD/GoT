@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\UserCharacter;
+use App\Entity\PollCharacter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method UserCharacter|null find($id, $lockMode = null, $lockVersion = null)
- * @method UserCharacter|null findOneBy(array $criteria, array $orderBy = null)
- * @method UserCharacter[]    findAll()
- * @method UserCharacter[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method PollCharacter|null find($id, $lockMode = null, $lockVersion = null)
+ * @method PollCharacter|null findOneBy(array $criteria, array $orderBy = null)
+ * @method PollCharacter[]    findAll()
+ * @method PollCharacter[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserCharacterRepository extends ServiceEntityRepository
+class PollCharacterRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, UserCharacter::class);
+        parent::__construct($registry, PollCharacter::class);
     }
 
     // /**
-    //  * @return UserCharacter[] Returns an array of UserCharacter objects
+    //  * @return PollCharacter[] Returns an array of PollCharacter objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class UserCharacterRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?UserCharacter
+    public function findOneBySomeField($value): ?PollCharacter
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.exampleField = :val')

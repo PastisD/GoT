@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserCharacterRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PollCharacterRepository")
  */
-class UserCharacter
+class PollCharacter
 {
     /**
      * @ORM\Id()
@@ -17,13 +17,7 @@ class UserCharacter
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="userCharacters")
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-     */
-    private $user;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Character", inversedBy="userCharacters")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Character", inversedBy="pollCharacters")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $charac;
@@ -39,25 +33,14 @@ class UserCharacter
     private $whiteWalker = false;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Poll", inversedBy="pollCharacters")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $throne = false;
+    private $poll;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
     }
 
     public function getCharac(): ?Character
@@ -96,14 +79,14 @@ class UserCharacter
         return $this;
     }
 
-    public function getThrone(): ?bool
+    public function getPoll(): ?Poll
     {
-        return $this->throne;
+        return $this->poll;
     }
 
-    public function setThrone(bool $throne): self
+    public function setPoll(?Poll $poll): self
     {
-        $this->throne = $throne;
+        $this->poll = $poll;
 
         return $this;
     }
