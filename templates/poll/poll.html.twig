@@ -22,7 +22,6 @@
         <div class="row">
 
             {% for userChar in form.children.pollCharacters %}
-                {% dump(userChar.vars.value.charac) %}
                 <div class="col-6 col-lg-3 col-sm-4 portfolio-item">
                     <div class="card h-100">
                         <img class="card-img-top" src="{{ vich_uploader_asset(userChar.vars.value.charac, 'imageFile') }}" alt="">
@@ -35,7 +34,6 @@
                         </div>
                     </div>
                 </div>
-                {% dump(userChar) %}
             {% endfor %}
         </div>
 
