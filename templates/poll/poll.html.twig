@@ -19,6 +19,7 @@
         </div>
 
         {{ form_start(form) }}
+        <h2>Personages</h2>
         <div class="row">
 
             {% for userChar in form.children.pollCharacters %}
@@ -36,7 +37,12 @@
                 </div>
             {% endfor %}
         </div>
-
+        <h2>Questions subsidiaires</h2>
+        {{ form_row(form.throne) }}
+        {{ form_row(form.bronnCastle) }}
+        {{ form_row(form.wallRebuilt) }}
+        {{ form_row(form.whiteWalkerDead) }}
+        {{ form_row(form.whiteWalkerWin) }}
         {{ form_row(form.submit) }}
         {{ form_end(form) }}
 

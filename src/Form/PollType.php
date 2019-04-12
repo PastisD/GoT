@@ -47,6 +47,18 @@ class PollType extends AbstractType
                     return $character->getName();
                 }
             ])
+            ->add('bronnCastle', null, [
+                'label' => 'Bronn aura son château'
+            ])
+            ->add('wallRebuilt', null, [
+                'label' => 'Le Mur sera reconstruit'
+            ])
+            ->add('whiteWalkerDead', null, [
+                'label' => 'Les Marcheurs Blancs seront définitivement détruit'
+            ])
+            ->add('whiteWalkerWin', null, [
+                'label' => 'Les Marcheurs Blancs auront pris totalement le controle de Westeros'
+            ])
             ->add('submit', SubmitType::class);
     }
 

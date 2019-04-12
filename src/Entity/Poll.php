@@ -34,6 +34,26 @@ class Poll
      */
     private $throne;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $bronnCastle = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $whiteWalkerDead = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $wallRebuilt = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $whiteWalkerWin = false;
+
     public function __construct()
     {
         $this->pollCharacters = new ArrayCollection();
@@ -59,9 +79,15 @@ class Poll
     /**
      * @return Collection|PollCharacter[]
      */
-    public function getPollCharacters(): Collection
+    public function getPollCharacters()
     {
-        return $this->pollCharacters;
+        $pollCharacters =  $this->pollCharacters->toArray();
+        $cmp = function (PollCharacter $a, PollCharacter $b)
+        {
+            return strcmp($a->getCharac()->getName(), $b->getCharac()->getName());
+        };
+        usort($pollCharacters, $cmp);
+        return new ArrayCollection($pollCharacters);
     }
 
     public function addPollCharacter(PollCharacter $pollCharacter): self
@@ -95,6 +121,54 @@ class Poll
     public function setThrone(?Character $throne): self
     {
         $this->throne = $throne;
+
+        return $this;
+    }
+
+    public function getBronnCastle(): ?bool
+    {
+        return $this->bronnCastle;
+    }
+
+    public function setBronnCastle(bool $bronnCastle): self
+    {
+        $this->bronnCastle = $bronnCastle;
+
+        return $this;
+    }
+
+    public function getWhiteWalkerDead(): ?bool
+    {
+        return $this->whiteWalkerDead;
+    }
+
+    public function setWhiteWalkerDead(bool $whiteWalkerDead): self
+    {
+        $this->whiteWalkerDead = $whiteWalkerDead;
+
+        return $this;
+    }
+
+    public function getWallRebuilt(): ?bool
+    {
+        return $this->wallRebuilt;
+    }
+
+    public function setWallRebuilt(bool $wallRebuilt): self
+    {
+        $this->wallRebuilt = $wallRebuilt;
+
+        return $this;
+    }
+
+    public function getWhiteWalkerWin(): ?bool
+    {
+        return $this->whiteWalkerWin;
+    }
+
+    public function setWhiteWalkerWin(bool $whiteWalkerWin): self
+    {
+        $this->whiteWalkerWin = $whiteWalkerWin;
 
         return $this;
     }
