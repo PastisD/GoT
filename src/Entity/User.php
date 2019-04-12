@@ -21,9 +21,30 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @var ArrayCollection|UserCharacter[]
+     *
      * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="user", cascade={"persist","remove"}, orphanRemoval=true)
      */
     private $userCharacters;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="blob")
+     */
+    private $photo;
 
     public function __construct()
     {
@@ -33,7 +54,7 @@ class User extends BaseUser
     }
 
     /**
-     * @return Collection|UserCharacter[]
+     * @return ArrayCollection|UserCharacter[]
      */
     public function getUserCharacters(): Collection
     {
@@ -59,6 +80,63 @@ class User extends BaseUser
                 $userCharacter->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     * @return User
+     */
+    public function setFirstName(string $firstName): User
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     * @return User
+     */
+    public function setLastName(string $lastName): User
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     * @return User
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
 
         return $this;
     }
