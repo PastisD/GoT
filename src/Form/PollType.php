@@ -36,7 +36,7 @@ class PollType extends AbstractType
         $builder
             ->add('pollCharacters', CollectionType::class, ['entry_type' => PollCharacterType::class])
             ->add('throne', EntityType::class, [
-                'label' => 'Qui sera sur le thrône ?',
+                'label' => 'Qui sera sur le trône ?',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.name', 'ASC');
@@ -54,7 +54,7 @@ class PollType extends AbstractType
                 'label' => 'Arya arrive à tuer toute sa liste'
             ])
             ->add('wallRebuilt', null, [
-                'label' => 'Le Mur sera reconstruit'
+                'label' => 'Le Mur est reconstruit (ou en cours de reconstruction)'
             ])
             ->add('whiteWalkerDead', null, [
                 'label' => 'Les Marcheurs Blancs seront définitivement détruit'
