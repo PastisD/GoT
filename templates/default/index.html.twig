@@ -40,65 +40,80 @@
 
 {% block content %}
     <!-- Page Content -->
-    <div class="container">
+    <h1 class="my-4">Pronostiques</h1>
 
-        <h1 class="my-4">Pronostiques</h1>
-
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                <th></th>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <th></th>
+            {% for user in users %}
+                {% if user.poll.id %}
+                    <th class="text-center align-middle">
+                        {#                            {% dump(user.displayPhoto) %}#}
+                        <div style="height: 100px; width: 100px; overflow: hidden; border-radius: 50%; display: inline-block;">
+                            <img src="{{ user.displayPhoto }}" width="100px"
+                                 alt="{{ user.firstName }} {{ user.lastName }}"/><br/>
+                        </div>
+                    </th>
+                {% endif %}
+            {% endfor %}
+            </thead>
+            <tbody>
+            <tr>
+                <th class="text-center align-middle">Trône</th>
                 {% for user in users %}
                     {% if user.poll.id %}
-                        <th class="text-center">
-{#                            {% dump(user.displayPhoto) %}#}
-                            <div style="height: 100px; width: 100px; overflow: hidden; border-radius: 50%; display: inline-block;">
-                                <img src="{{ user.displayPhoto }}" width="100px" alt="{{ user.firstName }} {{ user.lastName }}"/><br/>
-                            </div>
-                        </th>
+                        <td class="text-center align-middle">
+                            {% set imageUri = vich_uploader_asset(user.poll.throne, 'imageFile') %}
+                            <a href="{{ imageUri }}" target="_blank" title="{{ user.poll.throne.name }}"><img
+                                        src="{{ web_image(imageUri).zoomCrop(100, 100, 'transparent') }}"
+                                        alt="{{ user.poll.throne.name }}" style="border-radius: 50%;"/></a>
+                        </td>
                     {% endif %}
                 {% endfor %}
-                </thead>
-                <tbody>
-                {% for character in characters %}
-                    <tr>
-                        <th>
-                            {% set imageUri = vich_uploader_asset(character, 'imageFile') %}
-                            <a href="{{ imageUri }}" target="_blank" title="{{ character.name }}"><img src="{{ web_image(imageUri).zoomCrop(100, 100, 'transparent') }}" alt="{{ character.name }}" style="border-radius: 50%;"/></a>
-{#                            <br/>#}
-{#                            {{ character.name }}#}
-                        </th>
+            </tr>
+            {% for character in characters %}
+                <tr>
+                    <th class="text-center align-middle">
+                        {% set imageUri = vich_uploader_asset(character, 'imageFile') %}
+                        <a href="{{ imageUri }}" target="_blank" title="{{ character.name }}"><img
+                                    src="{{ web_image(imageUri).zoomCrop(100, 100, 'transparent') }}"
+                                    alt="{{ character.name }}" style="border-radius: 50%;"/></a>
+                        {#                            <br/>#}
+                        {#                            {{ character.name }}#}
+                    </th>
 
-                        {% for user in users %}
-                            {% if user.poll.id %}
-                                <td class="text-center align-middle">
-                                    {% set found = false %}
-                                    {% for pollCharac in user.poll.pollCharacters %}
-                                        {% if pollCharac.charac.id == character.id %}
-                                            {% set found = true %}
-                                            {% if pollCharac.dead %}
-                                                <img src="{{ asset('build/images/dead.svg') }}" width="30px" alt="Mort">&nbsp;
-                                            {% endif %}
-                                            {% if pollCharac.whiteWalker %}
-                                                <img src="{{ asset('build/images/frozen.svg') }}" width="30px" alt="Marcheur blanc">
-                                            {% endif %}
-                                            {% if pollCharac.dead == false and pollCharac.whiteWalker == false %}
-                                                <img src="{{ asset('build/images/heart.svg') }}" width="30px" alt="Vivant">
-                                            {% endif %}
+                    {% for user in users %}
+                        {% if user.poll.id %}
+                            <td class="text-center align-middle">
+                                {% set found = false %}
+                                {% for pollCharac in user.poll.pollCharacters %}
+                                    {% if pollCharac.charac.id == character.id %}
+                                        {% set found = true %}
+                                        {% if pollCharac.dead %}
+                                            <img src="{{ asset('build/images/dead.svg') }}" width="30px"
+                                                 alt="Mort">&nbsp;
                                         {% endif %}
-                                    {% endfor %}
-                                    {% if found == false %}
-                                        --
+                                        {% if pollCharac.whiteWalker %}
+                                            <img src="{{ asset('build/images/frozen.svg') }}" width="30px"
+                                                 alt="Marcheur blanc">
+                                        {% endif %}
+                                        {% if pollCharac.dead == false and pollCharac.whiteWalker == false %}
+                                            <img src="{{ asset('build/images/heart.svg') }}" width="30px"
+                                                 alt="Vivant">
+                                        {% endif %}
                                     {% endif %}
-                                </td>
-                            {% endif %}
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
+                                {% endfor %}
+                                {% if found == false %}
+                                    --
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
     <!-- /.container -->
 {% endblock %}
