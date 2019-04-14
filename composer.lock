@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2df71fc4cfe20d100ad80a7a98a99ea6",
+    "content-hash": "e4e32fb356b956f53e60cdc86f6b03bb",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1572,6 +1572,155 @@
                 "User management"
             ],
             "time": "2018-03-08T08:59:27+00:00"
+        },
+        {
+            "name": "gregwar/cache",
+            "version": "v1.0.12",
+            "target-dir": "Gregwar/Cache",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gregwar/Cache.git",
+                "reference": "305d0f5a12c0beecbbd7e1de236f59f39e0c0ac3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gregwar/Cache/zipball/305d0f5a12c0beecbbd7e1de236f59f39e0c0ac3",
+                "reference": "305d0f5a12c0beecbbd7e1de236f59f39e0c0ac3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Gregwar\\Cache": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gregwar",
+                    "email": "g.passault@gmail.com"
+                }
+            ],
+            "description": "A lightweight file-system cache system",
+            "keywords": [
+                "cache",
+                "caching",
+                "file-system",
+                "system"
+            ],
+            "time": "2016-09-23T08:16:04+00:00"
+        },
+        {
+            "name": "gregwar/image",
+            "version": "v2.0.24",
+            "target-dir": "Gregwar/Image",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gregwar/Image.git",
+                "reference": "52145816255dd20cb4bb115d0f9e1030c6287994"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gregwar/Image/zipball/52145816255dd20cb4bb115d0f9e1030c6287994",
+                "reference": "52145816255dd20cb4bb115d0f9e1030c6287994",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "gregwar/cache": "^1.0.6",
+                "php": "^5.3 || ^7.0"
+            },
+            "require-dev": {
+                "sllh/php-cs-fixer-styleci-bridge": "~1.0",
+                "symfony/phpunit-bridge": "^2.7.4 || ^3.0"
+            },
+            "suggest": {
+                "behat/transliterator": "Transliterator provides ability to set non-latin1 pretty names"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Gregwar\\Image": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Grégoire Passault",
+                    "email": "g.passault@gmail.com",
+                    "homepage": "http://www.gregwar.com/"
+                }
+            ],
+            "description": "Image handling",
+            "homepage": "https://github.com/Gregwar/Image",
+            "keywords": [
+                "gd",
+                "image"
+            ],
+            "time": "2019-01-27T15:10:06+00:00"
+        },
+        {
+            "name": "gregwar/image-bundle",
+            "version": "v2.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gregwar/ImageBundle.git",
+                "reference": "0024f16805cc3cf123ae4ac70ade1dd39eccc103"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gregwar/ImageBundle/zipball/0024f16805cc3cf123ae4ac70ade1dd39eccc103",
+                "reference": "0024f16805cc3cf123ae4ac70ade1dd39eccc103",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "gregwar/image": "2.*",
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": "^2.3 || ^3.0 || ^4.0",
+                "twig/twig": "^1.12 || ^2.0"
+            },
+            "require-dev": {
+                "sllh/php-cs-fixer-styleci-bridge": "~1.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gregwar\\ImageBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Grégoire Passault",
+                    "email": "g.passault@gmail.com",
+                    "homepage": "http://www.gregwar.com/"
+                }
+            ],
+            "description": "Image handling bundle",
+            "homepage": "https://github.com/Gregwar/ImageBundle",
+            "keywords": [
+                "image",
+                "symfony"
+            ],
+            "time": "2018-08-06T21:09:05+00:00"
         },
         {
             "name": "jdorn/sql-formatter",

@@ -1,0 +1,3 @@
+gregwar_image:
+    web_dir: "%kernel.root_dir%/../public"
+    throw_exception: false

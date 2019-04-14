@@ -132,6 +132,15 @@
             "./src/Entity/User.php"
         ]
     },
+    "gregwar/cache": {
+        "version": "v1.0.12"
+    },
+    "gregwar/image": {
+        "version": "v2.0.24"
+    },
+    "gregwar/image-bundle": {
+        "version": "v2.2.3"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },

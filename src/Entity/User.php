@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Serializer\Normalizer\DataUriNormalizer;
 
 /**
  * @ORM\Entity
@@ -43,6 +44,11 @@ class User extends BaseUser
      * @ORM\OneToOne(targetEntity="App\Entity\Poll", mappedBy="user", cascade={"persist", "remove"})
      */
     private $poll;
+
+    /**
+     * @var string
+     */
+    private $rawPhoto;
 
     public function __construct()
     {
@@ -105,6 +111,18 @@ class User extends BaseUser
         $this->photo = $photo;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function displayPhoto()
+    {
+        if(null === $this->rawPhoto) {
+            $this->rawPhoto = "data:image/jpeg;base64," . base64_encode(stream_get_contents($this->getPhoto()));
+        }
+
+        return $this->rawPhoto;
     }
 
     public function getPoll(): Poll

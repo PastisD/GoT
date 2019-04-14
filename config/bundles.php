@@ -19,4 +19,5 @@ return [
     EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     FR3D\LdapBundle\FR3DLdapBundle::class => ['all' => true],
+    Gregwar\ImageBundle\GregwarImageBundle::class => ['all' => true],
 ];

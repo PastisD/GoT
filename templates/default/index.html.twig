@@ -5,19 +5,22 @@
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <!-- Slide One - Set the background image for this slide in the line below -->
-                <div class="carousel-item active" style="background-position: top; background-image: url('{{ asset('build/images/emilia_clarke_in_game_of_thrones_final_season_8_2019.jpg') }}')">
+                <div class="carousel-item active"
+                     style="background-position: top; background-image: url('{{ asset('build/images/emilia_clarke_in_game_of_thrones_final_season_8_2019.jpg') }}')">
                     <div class="carousel-caption d-none d-md-block">
                         <a href="{{ path('poll') }}" class="btn btn-primary">Voter</a>
                     </div>
                 </div>
                 <!-- Slide Two - Set the background image for this slide in the line below -->
-                <div class="carousel-item" style="background-position: top; background-image: url('{{ asset('build/images/jon_snow_in_game_of_thrones_final_season_8_2019.jpg') }}')">
+                <div class="carousel-item"
+                     style="background-position: top; background-image: url('{{ asset('build/images/jon_snow_in_game_of_thrones_final_season_8_2019.jpg') }}')">
                     <div class="carousel-caption d-none d-md-block">
                         <a href="{{ path('poll') }}" class="btn btn-primary">Voter</a>
                     </div>
                 </div>
                 <!-- Slide Three - Set the background image for this slide in the line below -->
-                <div class="carousel-item" style="background-position: top; background-image: url('{{ asset('build/images/sansa_stark_in_game_of_thrones_final_season_8_2019.jpg') }}')">
+                <div class="carousel-item"
+                     style="background-position: top; background-image: url('{{ asset('build/images/sansa_stark_in_game_of_thrones_final_season_8_2019.jpg') }}')">
                     <div class="carousel-caption d-none d-md-block">
                         <a href="{{ path('poll') }}" class="btn btn-primary">Voter</a>
                     </div>
@@ -39,7 +42,62 @@
     <!-- Page Content -->
     <div class="container">
 
-        <h1 class="my-4">SOON</h1>
+        <h1 class="my-4">Pronostiques</h1>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <th></th>
+                {% for user in users %}
+                    {% if user.poll.id %}
+                        <th class="text-center">
+{#                            {% dump(user.displayPhoto) %}#}
+                            <div style="height: 100px; width: 100px; overflow: hidden; border-radius: 50%; display: inline-block;">
+                                <img src="{{ user.displayPhoto }}" width="100px" alt="{{ user.firstName }} {{ user.lastName }}"/><br/>
+                            </div>
+                        </th>
+                    {% endif %}
+                {% endfor %}
+                </thead>
+                <tbody>
+                {% for character in characters %}
+                    <tr>
+                        <th>
+                            {% set imageUri = vich_uploader_asset(character, 'imageFile') %}
+                            <a href="{{ imageUri }}" target="_blank" title="{{ character.name }}"><img src="{{ web_image(imageUri).zoomCrop(100, 100, 'transparent') }}" alt="{{ character.name }}" style="border-radius: 50%;"/></a>
+{#                            <br/>#}
+{#                            {{ character.name }}#}
+                        </th>
+
+                        {% for user in users %}
+                            {% if user.poll.id %}
+                                <td class="text-center align-middle">
+                                    {% set found = false %}
+                                    {% for pollCharac in user.poll.pollCharacters %}
+                                        {% if pollCharac.charac.id == character.id %}
+                                            {% set found = true %}
+                                            {% if pollCharac.dead %}
+                                                <img src="{{ asset('build/images/dead.svg') }}" width="30px" alt="Mort">&nbsp;
+                                            {% endif %}
+                                            {% if pollCharac.whiteWalker %}
+                                                <img src="{{ asset('build/images/frozen.svg') }}" width="30px" alt="Marcheur blanc">
+                                            {% endif %}
+                                            {% if pollCharac.dead == false and pollCharac.whiteWalker == false %}
+                                                <img src="{{ asset('build/images/heart.svg') }}" width="30px" alt="Vivant">
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if found == false %}
+                                        --
+                                    {% endif %}
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
     </div>
     <!-- /.container -->
