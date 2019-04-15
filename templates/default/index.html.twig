@@ -50,9 +50,9 @@
                 {% if user.poll.id %}
                     <th class="text-center align-middle">
                         {% if user.displayPhoto %}
-                        <div style="height: 75px; width: 75px; overflow: hidden; border-radius: 50%; display: inline-block;">
+                        <div style="height: 60px; width: 60px; overflow: hidden; border-radius: 50%; display: inline-block;">
                             <img src="{{ user.displayPhoto }}" width="100px"
-                                 alt="{{ user.firstName }} {{ user.lastName }}"/><br/>
+                                 title="{{ user.firstName }} {{ user.lastName }}"/><br/>
                         </div>
                         {% else %}
                             {{ user.firstName }} {{ user.lastName }}
@@ -68,9 +68,9 @@
                     {% if user.poll.id %}
                         <td class="text-center align-middle">
                             {% set imageUri = vich_uploader_asset(user.poll.throne, 'imageFile') %}
-                            <a href="{{ imageUri }}" target="_blank" title="{{ user.poll.throne.name }}"><img
-                                        src="{{ web_image(imageUri).zoomCrop(75, 75, 'transparent') }}"
-                                        alt="{{ user.poll.throne.name }}" style="border-radius: 50%;"/></a>
+                            <a href="{{ imageUri }}" target="_blank" alt="{{ user.poll.throne.name }}"><img
+                                        src="{{ web_image(imageUri).zoomCrop(60, 60, 'transparent') }}"
+                                        title="{{ user.poll.throne.name }}" style="border-radius: 50%;"/></a>
                         </td>
                     {% endif %}
                 {% endfor %}
