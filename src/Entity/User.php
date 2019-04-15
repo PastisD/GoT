@@ -36,7 +36,7 @@ class User extends BaseUser
     private $firstName;
 
     /**
-     * @ORM\Column(type="blob")
+     * @ORM\Column(type="blob", nullable=true)
      */
     private $photo;
 
@@ -118,7 +118,7 @@ class User extends BaseUser
      */
     public function displayPhoto()
     {
-        if(null === $this->rawPhoto) {
+        if(null === $this->rawPhoto && $this->photo) {
             $this->rawPhoto = "data:image/jpeg;base64," . base64_encode(stream_get_contents($this->getPhoto()));
         }
 

@@ -49,11 +49,14 @@
             {% for user in users %}
                 {% if user.poll.id %}
                     <th class="text-center align-middle">
-                        {#                            {% dump(user.displayPhoto) %}#}
+                        {% if user.displayPhoto %}
                         <div style="height: 100px; width: 100px; overflow: hidden; border-radius: 50%; display: inline-block;">
                             <img src="{{ user.displayPhoto }}" width="100px"
                                  alt="{{ user.firstName }} {{ user.lastName }}"/><br/>
                         </div>
+                        {% else %}
+                            {{ user.firstName }} {{ user.lastName }}
+                        {% endif %}
                     </th>
                 {% endif %}
             {% endfor %}
