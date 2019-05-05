@@ -5985,6 +5985,11 @@ stdout-stream@^1.4.0:
   dependencies:
     readable-stream "^2.0.1"
 
+sticky-table-headers@^0.1.24:
+  version "0.1.24"
+  resolved "https://registry.yarnpkg.com/sticky-table-headers/-/sticky-table-headers-0.1.24.tgz#7aea1f0791ca3a02b0860cd885ed757a1acbf381"
+  integrity sha1-euofB5HKOgKwhgzYhe11ehrL84E=
+
 stream-browserify@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-2.0.2.tgz#87521d38a44aa7ee91ce1cd2a47df0cb49dd660b"
