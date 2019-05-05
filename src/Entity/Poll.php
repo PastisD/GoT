@@ -59,6 +59,37 @@ class Poll
      */
     private $aryaKillAll;
 
+    public function getPoints(): int
+    {
+        $points = 0;
+
+        foreach ($this->getPollCharacters() as $pollCharacter) {
+            $points += $pollCharacter->getPoints();
+        }
+
+        if ($this->getBronnCastle() === false) { // Bronn aura son château
+            $points += 3;
+        }
+
+        if ($this->getWhiteWalkerDead() === true) { // Les Marcheurs Blancs seront définitivement détruit
+            $points += 3;
+        }
+
+        if ($this->getWallRebuilt() === false) { // Le Mur est reconstruit (ou en cours de reconstruction)
+            $points += 3;
+        }
+
+        if ($this->getWhiteWalkerWin() === false) { // Les Marcheurs Blancs auront pris totalement le controle de Westeros
+            $points += 3;
+        }
+
+        if ($this->getAryaKillAll() === false) { // Arya arrive à tuer toute sa liste
+            $points += 3;
+        }
+
+        return $points;
+    }
+
     public function __construct()
     {
         $this->pollCharacters = new ArrayCollection();

@@ -38,6 +38,21 @@ class PollCharacter
      */
     private $poll;
 
+    public function getPoints(): int
+    {
+        if($this->getDead() === $this->getCharac()->getDead() && $this->getWhiteWalker() === $this->getCharac()->getWhiteWalker()) {
+            return 3;
+        }
+        if($this->getDead() === $this->getCharac()->getDead()) {
+            return 1;
+        }
+        if($this->getWhiteWalker() === $this->getCharac()->getWhiteWalker()) {
+            return 1;
+        }
+
+        return 0;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -55,6 +55,16 @@ class Character
      */
     private $polls;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $dead = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $whiteWalker = false;
+
     public function __construct()
     {
         $this->pollCharacters = new ArrayCollection();
@@ -164,6 +174,30 @@ class Character
                 $poll->setThrone(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDead(): ?bool
+    {
+        return $this->dead;
+    }
+
+    public function setDead(bool $dead): self
+    {
+        $this->dead = $dead;
+
+        return $this;
+    }
+
+    public function getWhiteWalker(): ?bool
+    {
+        return $this->whiteWalker;
+    }
+
+    public function setWhiteWalker(bool $whiteWalker): self
+    {
+        $this->whiteWalker = $whiteWalker;
 
         return $this;
     }

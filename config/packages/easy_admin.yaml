@@ -11,10 +11,16 @@ easy_admin:
                 fields:
                     - { property: 'image', template: 'vich_uploader_image.html.twig' }
                     - { property: 'name' }
+                    - { property: 'dead' }
+                    - { property: 'whiteWalker' }
+                max_results: 50
+                sort: ['name', 'ASC']
             form:
                 fields:
                     - { property: 'imageFile', type: 'vich_image' }
                     - { property: 'name' }
+                    - { property: 'dead' }
+                    - { property: 'whiteWalker' }
         User:
             class: App\Entity\User
             form:
