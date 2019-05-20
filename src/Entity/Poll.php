@@ -87,7 +87,7 @@ class Poll
             $points += 3;
         }
 
-        if ($this->getThrone()->getId() === 3) { // Arya arrive à tuer toute sa liste
+        if ($this->getThrone() && $this->getThrone()->getId() === 3) { // Arya arrive à tuer toute sa liste
             $points += 25;
         }
 
