@@ -67,7 +67,7 @@ class Poll
             $points += $pollCharacter->getPoints();
         }
 
-        if ($this->getBronnCastle() === false) { // Bronn aura son château
+        if ($this->getBronnCastle() === true) { // Bronn aura son château
             $points += 3;
         }
 
@@ -85,6 +85,10 @@ class Poll
 
         if ($this->getAryaKillAll() === false) { // Arya arrive à tuer toute sa liste
             $points += 3;
+        }
+
+        if ($this->getThrone()->getId() === 3) { // Arya arrive à tuer toute sa liste
+            $points += 25;
         }
 
         return $points;
